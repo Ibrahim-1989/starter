@@ -39,7 +39,7 @@ class Offercontroller extends Controller
     }
 
     public function Create(){
-        return view(LaravelLocalization::setLocale().'offers/Create');
+        return view('offers/Create');
     }
 
     public function NewOffer(OfferRequest $request){

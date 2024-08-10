@@ -33,21 +33,39 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 //     Route::get('create', [App\Http\Controllers\Offercontroller::class,'Create'])->name('CreateOffer');
 //     Route::Post('NewOffer', 'Offercontroller@NewOffer')->name('NewOffer');
 // });
-Route::group(['prefix'=> 'Offers'],function(){
-    Route::group(
-        [
-            'prefix'=> LaravelLocalization::setLocale(),
-            'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
-        ],
-        function () {
 
-            Route::get('/Fillable', [Offercontroller::class, 'GetAllOffers']);
+// Route::group(['prefix'=> 'Offers'],function(){
+//     Route::group(
+//         [
+//             'prefix'=> LaravelLocalization::setLocale(),
+//             'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
+//         ],
+//         function () {
 
-            Route::get('all', [Offercontroller::class, 'getAll'])->name('offers.all');
-            //Route::get('store1', [Offercontroller::class, 'storeOffer1'])->name('storeOffer1');
+//             Route::get('/Fillable', [Offercontroller::class, 'GetAllOffers']);
 
-            Route::get('create', [Offercontroller::class, 'Create'])->name('CreateOffer');
+//             Route::get('all', [Offercontroller::class, 'getAll'])->name('offers.all');
+//             //Route::get('store1', [Offercontroller::class, 'storeOffer1'])->name('storeOffer1');
 
-            Route::Post('NewOffer', [Offercontroller::class, 'NewOffer'])->name('NewOffer');
-        });
+//             Route::get('create', [Offercontroller::class, 'Create'])->name('CreateOffer');
+
+//             Route::Post('NewOffer', [Offercontroller::class, 'NewOffer'])->name('NewOffer');
+//         });
+// });
+
+
+Route::group([
+    'prefix'=> LaravelLocalization::setLocale(),
+    'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
+],function(){
+    Route::group(['prefix'=> 'Offers'],function(){
+        
+        Route::get('/Fillable', [Offercontroller::class, 'GetAllOffers']);
+
+        Route::get('all', [Offercontroller::class, 'getAll'])->name('offers.all');
+
+        Route::get('create', [Offercontroller::class, 'Create'])->name('CreateOffer');
+
+        Route::Post('NewOffer', [Offercontroller::class, 'NewOffer'])->name('NewOffer');
+    });
 });
