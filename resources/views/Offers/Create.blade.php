@@ -3,17 +3,11 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-        <title>Laravel</title>
-    
-    
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
               integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-    
-    <title>Create Offer</title>
+        <title>Create Offer</title>
         <!-- Styles -->
         <style>
             html, body {
@@ -87,7 +81,6 @@
                  {{ Session::get('success') }}
             </div>
         @endif
-        
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -112,12 +105,12 @@
                 </form>
             </div>
         </nav>
-        <form method="POST" action="{{ url('Offers/NewOffer') }}">
+        <form method="POST" action="{{ url('Offers/store') }}">
                 @csrf
                 <div class="form-row">
                     <div class="col-md-12">
-                        <label for="name">Name Arabic</label>
-                        <input type="text" class="form-control" name="name_ar" id="inputname" placeholder="name_ar...">
+                        <label for="name_ar">{{__('messages.Offer Name Arabic_Lb') }}</label>
+                        <input type="text" class="form-control" name="name_ar" id="name_ar" placeholder="{{__('messages.Offer Name Arabic_Lb') }}...">
                         @error('name_ar')
                         <span class="invalid-feedback text-danger" role="alert">
                             <strong>{{ $message }}</strong>
@@ -127,8 +120,8 @@
                 </div>
                 <div class="form-row">
                     <div class="col-md-12">
-                        <label for="name">Name English</label>
-                        <input type="text" class="form-control" name="name_en" id="inputname" placeholder="name_ar...">
+                        <label for="name_en">{{__('messages.Offer Name English_Lb') }}</label>
+                        <input type="text" class="form-control" name="name_en" id="name_en" placeholder="{{__('messages.Offer Name English_Lb') }}...">
                         @error('name_en')
                         <span class="invalid-feedback text-danger" role="alert">
                             <strong>{{ $message }}</strong>
@@ -138,8 +131,8 @@
                 </div>
                 <div class="form-row">
                   <div class="col-md-12">
-                    <label for="price">Price</label>
-                    <input type="text" class="form-control" name="price" id="price" placeholder="Price...">
+                    <label for="price">{{__('messages.Offer Price_Lb') }}</label>
+                    <input type="text" class="form-control" name="price" id="price" placeholder="{{__('messages.Offer Price_Lb') }}...">
                     @error('price')
                     <span class="invalid-feedback text-danger" role="alert">
                         <strong>{{ $message }}</strong>
@@ -149,8 +142,8 @@
                 </div>
                 <div class="form-row">
                     <div class="col-md-12">
-                  <label for="details_ar">Details Arabic</label>
-                  <textarea class="form-control" name="details_ar" id="details_ar"  placeholder="Details..."></textarea>
+                  <label for="details_ar">{{__('messages.Offer Details Arabic_Lb') }}</label>
+                  <textarea class="form-control" name="details_ar" id="details_ar"  placeholder="{{__('messages.Offer Details Arabic_Lb') }}..."></textarea>
                   @error('details_ar')
                         <span class="invalid-feedback text-danger" role="alert">
                             <strong>{{ $message }}</strong>
@@ -160,8 +153,8 @@
                 </div>
                 <div class="form-row">
                     <div class="col-md-12">
-                  <label for="details_ar">Details English</label>
-                  <textarea class="form-control" name="details_en" id="details_en"  placeholder="Details..."></textarea>
+                  <label for="details_en">{{__('messages.Offer Details English_Lb') }}</label>
+                  <textarea class="form-control" name="details_en" id="details_en"  placeholder="{{__('messages.Offer Details English_Lb') }}..."></textarea>
                   @error('details_en')
                         <span class="invalid-feedback text-danger" role="alert">
                             <strong>{{ $message }}</strong>
@@ -172,7 +165,7 @@
                 <div class="form-row">
                     <div class="col-md-12">
                         <br>
-                        <button type="submit" class="btn btn-primary">Save</button>
+                        <button type="submit" class="btn btn-primary">{{__('messages.Offer btnSave') }}</button>
                     </div>
                     
                 </div>

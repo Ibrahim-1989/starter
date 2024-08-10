@@ -28,44 +28,16 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
-// Route::namespace('App\Http\Controllers')->group(function () {
-//     Route::get('Offers', [App\Http\Controllers\Offercontroller::class,'GetAllOffers'])->name('OfferList');
-//     Route::get('create', [App\Http\Controllers\Offercontroller::class,'Create'])->name('CreateOffer');
-//     Route::Post('NewOffer', 'Offercontroller@NewOffer')->name('NewOffer');
-// });
-
-// Route::group(['prefix'=> 'Offers'],function(){
-//     Route::group(
-//         [
-//             'prefix'=> LaravelLocalization::setLocale(),
-//             'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
-//         ],
-//         function () {
-
-//             Route::get('/Fillable', [Offercontroller::class, 'GetAllOffers']);
-
-//             Route::get('all', [Offercontroller::class, 'getAll'])->name('offers.all');
-//             //Route::get('store1', [Offercontroller::class, 'storeOffer1'])->name('storeOffer1');
-
-//             Route::get('create', [Offercontroller::class, 'Create'])->name('CreateOffer');
-
-//             Route::Post('NewOffer', [Offercontroller::class, 'NewOffer'])->name('NewOffer');
-//         });
-// });
-
-
 Route::group([
     'prefix'=> LaravelLocalization::setLocale(),
     'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
 ],function(){
     Route::group(['prefix'=> 'Offers'],function(){
-        
-        Route::get('/Fillable', [Offercontroller::class, 'GetAllOffers']);
 
-        Route::get('all', [Offercontroller::class, 'getAll'])->name('offers.all');
+        Route::get('all', [Offercontroller::class, 'index'])->name('offers.all');
 
         Route::get('create', [Offercontroller::class, 'Create'])->name('CreateOffer');
 
-        Route::Post('NewOffer', [Offercontroller::class, 'NewOffer'])->name('NewOffer');
+        Route::Post('store', [Offercontroller::class, 'store'])->name('store');
     });
 });

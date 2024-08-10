@@ -16,49 +16,36 @@ class Offercontroller extends Controller
 
     }
 
-    public function getAll(){
+    public function index(){
         $offers = Offer::select('id',
         'price',
-        'name_'. LaravelLocalization::getCurrentLocale() . 'as Name',
-        'details_'. LaravelLocalization::getCurrentLocale() . 'as Details',
+        'name_'. LaravelLocalization::getCurrentLocale() . ' as name',
+        'details_'. LaravelLocalization::getCurrentLocale() . ' as details',
         )->get();
         return view('offers.all', compact('offers'));
-    }
-    
-    public function GetAllOffers(){
-        $getAllOffers = Offer::get();
-        return $getAllOffers;
-    }
-
-    public function storeOffer1(){
-        Offer::create([
-            'name'=> 'Name Offer 3',
-            'price'=> 5000,
-            'details'=> 'Offer Details',
-        ]);
     }
 
     public function Create(){
         return view('offers/Create');
     }
 
-    public function NewOffer(OfferRequest $request){
-        // $rules = $request->OffersRules();
-        // $messages = $this->OfferMessages();
-        // $validate = Validator::make($request->all(), $rules, $messages);
+    public function store(OfferRequest $request){
+        // $rule = $request->rules();
+        // $messages = $request->messages();
+
+        // $validate = validator::make($request->all(), $rule, $messages);
 
         // if($validate->fails()){
         //     return redirect()->back()->withErrors($validate)->withInput($request->all());
         // }
-        
+
         Offer::create([
-            'name'=> $request->name,
+            'name_ar'=> $request->name_ar,
+            'name_en'=> $request->name_en,
             'price'=> $request->price,
-            'details'=> $request->details,
+            'details_ar'=> $request->details_ar,
+            'details_en'=> $request->details_en,
         ]);
         return redirect()->back()->with('success','تم إضافة العرض بنجاح');
     }
-
-    
-    
 }

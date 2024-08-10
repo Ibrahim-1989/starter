@@ -15,15 +15,19 @@ class OfferRequest extends FormRequest
     {
         return true;
     }
-
+    
     public function messages(){
         return [
-            'name.required'=> trans('messages.Offer Name Required'),
-            'name.unique'=> trans('messages.Offer Name Must Be Unique'),
-            'name.max'=> trans('messages.Offer Name Max'),
-            'price.required'=>  trans('messages.Offer Price Required'),
-            'price.numeric'=> trans('messages.Offer Price must be Numbers Only'),
-            'details.required'=> trans('messages.Offer Details Is Required'),
+            'name_ar.required'=> __('messages.Offer Arabic Name Required'),
+            'name_ar.unique'=> __('messages.Offer Arabic Name Must Be Unique'),
+            'name_ar.max'=> __('messages.Offer Arabic Name Max'),
+            'name_en.required'=> __('messages.Offer English Name Required'),
+            'name_en.unique'=> __('messages.Offer English Name Must Be Unique'),
+            'name_en.max'=> __('messages.Offer English Name Max'),
+            'price.required'=> __('messages.Offer Price Required'),
+            'price.numeric'=> __('messages.Offer Price must be Numbers Only'),
+            'details_ar.required'=> __('messages.Offer Arabic Details Is Required'),
+            'details_en.required'=> __('messages.Offer English Details Is Required'),
         ];
     }
     /**
@@ -31,12 +35,13 @@ class OfferRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
-    {
+    public function rules(){
         return [
-            'name'=> 'required|unique:Offers,name|max:100',
+            'name_ar'=> 'required|unique:Offers,name|max:100',
+            'name_en'=> 'required|unique:Offers,name|max:100',
             'price'=> 'required|numeric',
-            'details'=> 'required',
+            'details_ar'=> 'required',
+            'details_en'=> 'required',
         ] ;
     }
 }

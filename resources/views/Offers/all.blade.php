@@ -133,9 +133,9 @@
     @foreach($offers as $offer)
         <tr>
             <th scope="row">{{$offer -> id}}</th>
-            <td>{{$offer -> Name}}</td>
+            <td>{{$offer -> name}}</td>
             <td>{{$offer -> price}}</td>
-            <td>{{$offer -> D7etails}}</td>
+            <td>{{$offer -> details}}</td>
             <td><img  style="width: 90px; height: 90px;" src="{{asset('images/offers/'.$offer->photo)}}"></td>
 
             <td>
