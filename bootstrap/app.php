@@ -1,5 +1,5 @@
 <?php
-
+use GuzzleHttp\Middleware;
 /*
 |--------------------------------------------------------------------------
 | Create The Application
@@ -14,6 +14,8 @@
 $app = new Illuminate\Foundation\Application(
     $_ENV['APP_BASE_PATH'] ?? dirname(__DIR__)
 );
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -40,6 +42,20 @@ $app->singleton(
     Illuminate\Contracts\Debug\ExceptionHandler::class,
     App\Exceptions\Handler::class
 );
+
+
+
+// $app::configure(base_path(dirname(__DIR__)))->withMiddleware(
+//     function (Middleware $middleware) {
+//         $middleware->alias([
+//             'localize'                => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationRoutes::class,
+//             'localizationRedirect'    => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationRedirectFilter::class,
+//             'localeSessionRedirect'   => \Mcamara\LaravelLocalization\Middleware\LocaleSessionRedirect::class,
+//             'localeCookieRedirect'    => \Mcamara\LaravelLocalization\Middleware\LocaleCookieRedirect::class,
+//             'localeViewPath'          => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationViewPath::class,
+//         ]);
+//     }
+// );
 
 /*
 |--------------------------------------------------------------------------

@@ -2,6 +2,8 @@
 
 namespace App\Console;
 
+use App\Console\Commands\expiration;
+use App\Console\Commands\Notify;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -13,11 +15,18 @@ class Kernel extends ConsoleKernel
      * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
      * @return void
      */
+    
+     protected $commands=[
+        expiration::class,
+        Notify::class,
+    ];
+
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
-    }
+        $schedule->command("user:expire")->everyMinute();
+        $schedule->command("Notify:Email")->daily();
 
+    }
     /**
      * Register the commands for the application.
      *
