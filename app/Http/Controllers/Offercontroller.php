@@ -6,6 +6,7 @@ use App\Http\Requests\OfferRequest;
 use App\Models\Offer;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 
 class Offercontroller extends Controller
@@ -15,6 +16,15 @@ class Offercontroller extends Controller
 
     }
 
+    public function getAll(){
+        $offers = Offer::select('id',
+        'price',
+        'name_'. LaravelLocalization::getCurrentLocale() . 'as Name',
+        'details_'. LaravelLocalization::getCurrentLocale() . 'as Details',
+        )->get();
+        return view('offers.all', compact('offers'));
+    }
+    
     public function GetAllOffers(){
         $getAllOffers = Offer::get();
         return $getAllOffers;
@@ -29,7 +39,7 @@ class Offercontroller extends Controller
     }
 
     public function Create(){
-        return view('offers/Create');
+        return view(LaravelLocalization::setLocale().'offers/Create');
     }
 
     public function NewOffer(OfferRequest $request){
@@ -48,5 +58,7 @@ class Offercontroller extends Controller
         ]);
         return redirect()->back()->with('success','تم إضافة العرض بنجاح');
     }
+
+    
     
 }

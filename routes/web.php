@@ -43,6 +43,7 @@ Route::group(['prefix'=> 'Offers'],function(){
 
             Route::get('/Fillable', [Offercontroller::class, 'GetAllOffers']);
 
+            Route::get('all', [Offercontroller::class, 'getAll'])->name('offers.all');
             //Route::get('store1', [Offercontroller::class, 'storeOffer1'])->name('storeOffer1');
 
             Route::get('create', [Offercontroller::class, 'Create'])->name('CreateOffer');
