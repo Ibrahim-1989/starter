@@ -39,5 +39,11 @@ Route::group([
         Route::get('create', [Offercontroller::class, 'Create'])->name('CreateOffer');
 
         Route::Post('store', [Offercontroller::class, 'store'])->name('store');
+
+        Route::get('delete/{id}', [Offercontroller::class, 'delete'])->name('offers.delete');
+
+        Route::get('edit/{id}', [Offercontroller::class,'edit'])->name('offers.edit');
+
+        Route::put('update', [Offercontroller::class,''])->name('Offers.update');
     });
 });

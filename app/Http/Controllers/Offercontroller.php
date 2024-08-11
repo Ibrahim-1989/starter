@@ -48,4 +48,19 @@ class Offercontroller extends Controller
         ]);
         return redirect()->back()->with('success','تم إضافة العرض بنجاح');
     }
+
+    public function delete($id){
+        if($id != 0){
+            Offer::findOrFail($id)->delete();
+        }
+        return redirect()->back()->with('success','Deleted Sucessfully');
+    }
+    
+    public function edit($id){
+        $offer = Offer::findOrFail($id);
+        return view('offers.edit', compact('offer'));
+    }
+    public function update(OfferRequest $request, $id){
+        
+    }
 }
