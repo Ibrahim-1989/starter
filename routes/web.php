@@ -38,15 +38,15 @@ Route::group([
 
         Route::get('/', [Offercontroller::class, 'index'])->name('offers.all');
 
-        Route::get('create', [Offercontroller::class, 'Create'])->name('CreateOffer');
+        Route::get('create', [Offercontroller::class, 'Create']);
 
         Route::Post('store', [Offercontroller::class, 'store'])->name('store');
 
         Route::get('delete/{id}', [Offercontroller::class, 'delete'])->name('offers.delete');
 
-        Route::get('edit/{id}', [Offercontroller::class,'edit'])->name('offers.edit');
+        Route::get('edit/{id}', [Offercontroller::class,'edit']);
 
-        Route::put('update', [Offercontroller::class,''])->name('Offers.update');
+        Route::Post('update/{id}', [Offercontroller::class,'update'])->name('Offers.update');
     });
 });
 
@@ -55,9 +55,17 @@ Route::group([
     'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
 ], function(){
     Route::group(['prefix'=> 'Products'], function(){
+
         Route::get('/', [ProductsController::class, 'index'])->name('Products.all');
-        Route::get('Create', [ProductsController::class, 'Create'])->name('CreateProduct');
+
+        Route::get('Create', [ProductsController::class, 'Create']);
+
         Route::Post('store', [ProductsController::class, 'store'])->name('store');
+
+        Route::get('edit/{id}', [ProductsController::class,'edit']);
+
+        Route::Post('update/{id}', [ProductsController::class,'update'])->name('Products.update');
+
         Route::get('delete/{id}', [ProductsController::class, 'delete'])->name('Products.delete');
     });
 });

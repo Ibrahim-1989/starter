@@ -67,7 +67,7 @@
         </style>
     </head>
     <body>
-        @if ($errors->any())
+        {{-- @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
                     @foreach ($errors->all() as $error)
@@ -75,7 +75,7 @@
                     @endforeach
                 </ul>
             </div>
-    `   @endif
+    `   @endif --}}
         @if (Session::has('success'))
             <div class="alert alert-success" role="alert">
                  {{ Session::get('success') }}
@@ -96,8 +96,6 @@
                             </a>
                         </li>
                     @endforeach
-        
-        
                 </ul>
                 <form class="form-inline my-2 my-lg-0">
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -105,14 +103,25 @@
                 </form>
             </div>
         </nav>
-        <form method="POST" action="{{ url('Products/store') }}">
+        <form method="POST" action="{{ url('Products/store') }}" enctype="multipart/form-data">
                 @csrf
+                <div class="form-row">
+                    <div class="col-md-12">
+                        <label for="image">{{__('messages.photo')}}</label>
+                        <input type="file" class="form-control" name="image" id="image">
+                        @error('image')
+                            <span class="form-text text-danger" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                </div>
                 <div class="form-row">
                     <div class="col-md-12">
                         <label for="name_ar">{{__('messages.Prouct Name Arabic_Lb') }}</label>
                         <input type="text" class="form-control" name="name_ar" id="name_ar" placeholder="{{__('messages.Prouct Name Arabic_Lb') }}...">
                         @error('name_ar')
-                        <span class="invalid-feedback text-danger" role="alert">
+                        <span class="form-text text-danger" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
@@ -123,7 +132,7 @@
                         <label for="name_en">{{__('messages.Product Name English_Lb') }}</label>
                         <input type="text" class="form-control" name="name_en" id="name_en" placeholder="{{__('messages.Product Name English_Lb') }}...">
                         @error('name_en')
-                        <span class="invalid-feedback text-danger" role="alert">
+                        <span class="form-text text-danger" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
@@ -134,7 +143,7 @@
                     <label for="price">{{__('messages.Offer Price_Lb') }}</label>
                     <input type="text" class="form-control" name="price" id="price" placeholder="{{__('messages.Offer Price_Lb') }}...">
                     @error('price')
-                    <span class="invalid-feedback text-danger" role="alert">
+                    <span class="form-text text-danger" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
                     @enderror
@@ -145,7 +154,7 @@
                   <label for="description_ar">{{__('messages.Product Description Arabic_Lb') }}</label>
                   <textarea class="form-control" name="description_ar" id="description_ar"  placeholder="{{__('messages.Product Description Arabic_Lb') }}..."></textarea>
                   @error('description_ar')
-                        <span class="invalid-feedback text-danger" role="alert">
+                        <span class="form-text text-danger" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
@@ -153,10 +162,10 @@
                 </div>
                 <div class="form-row">
                     <div class="col-md-12">
-                  <label for="details_en">{{__('messages.Product Description English_Lb') }}</label>
-                  <textarea class="form-control" name="details_en" id="details_en"  placeholder="{{__('messages.Product Description English_Lb') }}..."></textarea>
-                  @error('details_en')
-                        <span class="invalid-feedback text-danger" role="alert">
+                  <label for="description_en">{{__('messages.Product Description English_Lb') }}</label>
+                  <textarea class="form-control" name="description_en" id="description_en"  placeholder="{{__('messages.Product Description English_Lb') }}..."></textarea>
+                  @error('description_en')
+                        <span class="form-text text-danger" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror

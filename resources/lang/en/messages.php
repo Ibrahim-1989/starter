@@ -12,6 +12,7 @@ return [
     "Offer Name"=> "Name",
     "Offer Price"=> "Price",
     "Offer details"=> "Details",
+    "photo"=> "photo",
     "operation"=> "Operations",
     "Offer Arabic Name Required"=> "Offer Arabic Name Is Required",
     'Offer Arabic Name Must Be Unique'=> 'Arabic Name Is exits and must be unique',

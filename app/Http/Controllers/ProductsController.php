@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Requests\ProductsRequest;
+use Illuminate\Support\Facades\Validator;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 class ProductsController extends Controller
@@ -29,24 +30,95 @@ class ProductsController extends Controller
     }
 
     public function store(ProductsRequest $request){
+
+        $file_extention = $request->image->getClientOriginalExtension();
+
+        $file_name = time().'.'.$file_extention;
+
+        $path = 'images/Products';
+        
+        $request ->image->move($path, $file_name);
+
         Product::create(
             [
-            'name_ar'=> $request->name_ar,
-            'name_en'=> $request->name_en,
-            'price'=> $request->price,
-            'description_ar'=> $request->description_ar,
-            'description_en'=> $request->description_en,
-            'image'=> $request->image,
+                'image'=>$file_name,
+                'name_ar'=> $request->name_ar,
+                'name_en'=> $request->name_en,
+                'price'=> $request->price,
+                'description_ar'=> $request->description_ar,
+                'description_en'=> $request->description_en,
             ]
         );
-        return redirect()->back()->with('success','تم إضافة العرض بنجاح');
+        return redirect()->back()->with('success','تم إضافة المنتج بنجاح');
+    }
+
+    public function edit($id){
+        $product = Product::find( $id );
+        if($product == null){
+            return redirect()->back()->with('error','فشل فى إيجاد المنتج');
+        }
+        $product = Product::where('Id' ,$id)->first();
+        return view('Products.edit', compact('product'));
+    }
+
+
+    public function update(Request $request, $id){
+        $product = Product::find( $id );
+        if($product == null){
+            return redirect()->back()->with('error','فشل فى إيجاد المنتج');
+        }
+
+        $rule = $this->editRules();
+        $messages = $this->messages();
+        $validate = validator::make($request->all(), $rule, $messages);
+        
+        if($validate->fails()){
+            return redirect()->back()->withErrors($validate)->withInput($request->all());
+        }
+
+        $product->update( $request->all() );
+        return redirect()->back()->with('success','تم تحديث المنتج بنجاح');
+
     }
 
     public function delete($id){
-        if($id != 0){
-            Product::findOrFail($id)->delete();
+
+        $product = Product::find( $id );
+
+        if($product == null){
+            return redirect()->back()->with('error','فشل فى إيجاد المنتج');
         }
+
+        $product->delete();
+
+        // if($id != 0){
+        //     Product::findOrFail($id)->delete();
+        // }
         return redirect()->back()->with('success','Deleted Sucessfully');
+    }
+
+    public function editRules()
+    {
+        return [
+            'name_ar'=> 'required|max:100',
+            'name_en'=> 'required|max:100',
+            'price'=> 'required|numeric',
+            'description_ar'=> 'required',
+            'description_en'=> 'required',
+        ] ;
+    }
+
+    public function messages(){
+        return [
+            'name_ar.required'=> __('messages.Product Arabic Name Required'),
+            'name_ar.max'=> __('messages.Product Arabic Name Max'),
+            'name_en.required'=> __('messages.Product English Name Required'),
+            'name_en.max'=> __('messages.Product English Name Max'),
+            'price.required'=> __('messages.Product Price Required'),
+            'price.numeric'=> __('messages.Product Price must be Numbers Only'),
+            'description_ar.required'=> __('messages.Product Arabic Description Is Required'),
+            'description_en.required'=> __('messages.Product English Description Is Required'),
+        ];
     }
 }
 

@@ -6,14 +6,11 @@
 
     <title>Products</title>
 
-
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-
-
     <!-- Styles -->
     <style>
         html, body {
@@ -99,8 +96,6 @@
         </form>
     </div>
 </nav>
-
-
 @if(Session::has('success'))
 
     <div class="alert alert-success">
@@ -122,7 +117,7 @@
         <th scope="col">{{__('messages.Products Name')}}</th>
         <th scope="col">{{__('messages.Products Price')}}</th>
         <th scope="col">{{__('messages.Products description')}}</th>
-        <th scope="col">صوره العرض</th>
+        <th scope="col">{{__('messages.photo')}}</th>
 
         <th scope="col">{{__('messages.operation')}}</th>
     </tr>
@@ -139,24 +134,14 @@
             <td><img  style="width: 90px; height: 90px;" src="{{asset('images/Products/'.$item->image)}}"></td>
 
             <td>
-                <a href="{{url('products/edit/'. $item -> id)}}" class="btn btn-success"> {{__('messages.update')}}</a>
-                <a href="{{route('Products.delete',$item -> id)}}" class="btn btn-danger"> {{__('messages.delete')}}</a>
+                <a href="{{url('Products/edit/'. $item -> id)}}" class="btn btn-success"> {{__('messages.update')}}</a>
+                <a href="{{url('Products/delete/'.$item -> id)}}" class="btn btn-danger"> {{__('messages.delete')}}</a>
              </td>
 
         </tr>
     @endforeach
 
     </tbody>
-
-
-
-    @if(Session::has('success'))
-        <div class="alert alert-success" role="alert">
-            {{ Session::get('success') }}
-        </div>
-    @endif
-
-
 </table>
 </body>
 </html>

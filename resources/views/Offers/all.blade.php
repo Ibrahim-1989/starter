@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Laravel</title>
+    <title>Offers</title>
 
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -122,7 +122,7 @@
         <th scope="col">{{__('messages.Offer Name')}}</th>
         <th scope="col">{{__('messages.Offer Price')}}</th>
         <th scope="col">{{__('messages.Offer details')}}</th>
-        <th scope="col">صوره العرض</th>
+        <th scope="col">{{__('messages.photo')}}/th>
 
         <th scope="col">{{__('messages.operation')}}</th>
     </tr>
@@ -136,27 +136,17 @@
             <td>{{$offer -> name}}</td>
             <td>{{$offer -> price}}</td>
             <td>{{$offer -> details}}</td>
-            <td><img  style="width: 90px; height: 90px;" src="{{asset('images/offers/'.$offer->photo)}}"></td>
+            <td><img  style="width: 90px; height: 90px;" src="{{asset('images/offers/'.$offer-> imge)}}"></td>
 
             <td>
-                <a href="{{url('offers/edit/'. $offer -> id)}}" class="btn btn-success"> {{__('messages.update')}}</a>
-                <a href="{{route('offers.delete',$offer -> id)}}" class="btn btn-danger"> {{__('messages.delete')}}</a>
+                <a href="{{url('Offers/edit/'. $offer -> id)}}" class="btn btn-success"> {{__('messages.update')}}</a>
+                <a href="{{url('Offers/delete/'.$offer -> id)}}" class="btn btn-danger"> {{__('messages.delete')}}</a>
              </td>
 
         </tr>
     @endforeach
 
     </tbody>
-
-
-
-    @if(Session::has('success'))
-        <div class="alert alert-success" role="alert">
-            {{ Session::get('success') }}
-        </div>
-    @endif
-
-
 </table>
 </body>
 </html>

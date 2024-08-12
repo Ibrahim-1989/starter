@@ -67,7 +67,7 @@
         </style>
     </head>
     <body>
-        @if ($errors->any())
+        {{-- @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
                     @foreach ($errors->all() as $error)
@@ -75,7 +75,7 @@
                     @endforeach
                 </ul>
             </div>
-    `   @endif
+    `   @endif --}}
         @if (Session::has('success'))
             <div class="alert alert-success" role="alert">
                  {{ Session::get('success') }}
@@ -105,14 +105,14 @@
                 </form>
             </div>
         </nav>
-        <form method="Put" action="{{ url('Offers/update') }}">
+        <form method="POST" action="{{ url('Offers/update/'. $offer -> id) }}">
                 @csrf
                 <div class="form-row">
                     <div class="col-md-12">
                         <label for="name_ar">{{__('messages.Offer Name Arabic_Lb') }}</label>
-                        <input type="text" class="form-control" name="name_ar" id="name_ar" placeholder="{{__('messages.Offer Name Arabic_Lb') }}...">
+                        <input type="text" class="form-control" name="name_ar" id="name_ar" value="{{$offer -> name_ar}}" placeholder="{{__('messages.Offer Name Arabic_Lb') }}...">
                         @error('name_ar')
-                        <span class="invalid-feedback text-danger" role="alert">
+                        <span class="form-text text-danger" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
@@ -121,9 +121,9 @@
                 <div class="form-row">
                     <div class="col-md-12">
                         <label for="name_en">{{__('messages.Offer Name English_Lb') }}</label>
-                        <input type="text" class="form-control" name="name_en" id="name_en" placeholder="{{__('messages.Offer Name English_Lb') }}...">
+                        <input type="text" class="form-control" name="name_en" id="name_en" value="{{$offer -> name_en}}" placeholder="{{__('messages.Offer Name English_Lb') }}...">
                         @error('name_en')
-                        <span class="invalid-feedback text-danger" role="alert">
+                        <span class="form-text text-danger" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
@@ -132,9 +132,9 @@
                 <div class="form-row">
                   <div class="col-md-12">
                     <label for="price">{{__('messages.Offer Price_Lb') }}</label>
-                    <input type="text" class="form-control" name="price" id="price" placeholder="{{__('messages.Offer Price_Lb') }}...">
+                    <input type="text" class="form-control" name="price" id="price" value="{{$offer -> price}}" placeholder="{{__('messages.Offer Price_Lb') }}...">
                     @error('price')
-                    <span class="invalid-feedback text-danger" role="alert">
+                    <span class="form-text text-danger" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
                     @enderror
@@ -143,9 +143,9 @@
                 <div class="form-row">
                     <div class="col-md-12">
                   <label for="details_ar">{{__('messages.Offer Details Arabic_Lb') }}</label>
-                  <textarea class="form-control" name="details_ar" id="details_ar"  placeholder="{{__('messages.Offer Details Arabic_Lb') }}..."></textarea>
+                  <textarea class="form-control" name="details_ar" id="details_ar" placeholder="{{__('messages.Offer Details Arabic_Lb') }}...">{{$offer -> details_ar}}</textarea>
                   @error('details_ar')
-                        <span class="invalid-feedback text-danger" role="alert">
+                        <span class="form-text text-danger" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
@@ -154,9 +154,9 @@
                 <div class="form-row">
                     <div class="col-md-12">
                   <label for="details_en">{{__('messages.Offer Details English_Lb') }}</label>
-                  <textarea class="form-control" name="details_en" id="details_en"  placeholder="{{__('messages.Offer Details English_Lb') }}..."></textarea>
+                  <textarea class="form-control" name="details_en" id="details_en"  placeholder="{{__('messages.Offer Details English_Lb') }}...">{{$offer -> details_en}}</textarea>
                   @error('details_en')
-                        <span class="invalid-feedback text-danger" role="alert">
+                        <span class="form-text text-danger" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror

@@ -42,6 +42,19 @@ return [
             'visibility' => 'public',
         ],
 
+        'offers' => [
+            'driver' => 'local',
+            'root' => base_path().'public/images/offers',
+            'url' => env('APP_URL').'/public',
+            'visibility' => 'public',
+        ],
+        'Products' => [
+            'driver' => 'local',
+            'root' => base_path().'public/images/Products',
+            'url' => env('APP_URL').'/public',
+            'visibility' => 'public',
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),

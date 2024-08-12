@@ -11,6 +11,7 @@ return [
     "Offer btnSave"=> "حفظ",
     "Offer Name"=> "الإسم",
     "Offer Price"=> "السعر",
+    "photo"=> "الصوره",
     "Offer details"=> "التفاصيل",
     "operation"=> "العمليات",
     "Offer Arabic Name Required"=> "اسم العرض بالعربي مطلوب",
