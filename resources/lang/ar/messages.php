@@ -24,6 +24,8 @@ return [
     'Offer Price must be Numbers Only'=> 'سعر العرض يجب أن يكون أرقامًا فقط',
     'Offer Arabic Details Is Required'=> 'تفاصيل العرض بالعربي مطلوبة',
     'Offer English Details Is Required'=> 'تفاصيل العرض بالإنجليزي مطلوبة',
+    'Offer Not Found'=> 'العرض غير موجود',
+    'Offer Added Sucessfully'=> 'تم إضافة العرض بنجاح',
     /////////////////////////////////////////////Products////////////////////////////////////////////////////////////////////////////
     'Products Name'=> 'الإسم',
     'Products Price'=> 'السعر',
@@ -42,4 +44,9 @@ return [
     'Product Name English_Lb'=> 'الإسم بالإنجليزي',
     'Product Description Arabic_Lb'=> 'الوصف بالعربي',
     'Product Description English_Lb'=> 'الوصف بالإنجليزي',
+    'Product Not Found'=> 'المنتج غير موجود',
+    'Updated Sucessfully'=> 'تم التحديث بنجاح',
+    'Deleted Sucessfully'=> 'تم الحذف بنجاح',
+    'Product Updated Sucessfully'=> 'تم تحديث المنتج بنجاح',
+    'Product Added Sucessfully'=> 'تم إضافة المنتج بنجاح',
 ];

@@ -24,6 +24,8 @@ return [
     'Offer Price must be Numbers Only'=> 'Offer Price must be Numbers Only',
     'Offer Arabic Details Is Required'=> 'Offer Arabic Details Is Required',
     'Offer English Details Is Required'=> 'Offer English Details Is Required',
+    'Offer Not Found'=> 'Offer Is Not Foundه',
+    'Offer Added Sucessfully'=> 'Offer Is Added Sucessfully',
 /////////////////////////////////////////////Products////////////////////////////////////////////////////////////////////////////
     'Products Name'=> 'Name',
     'Products Price'=> 'Price',
@@ -42,4 +44,9 @@ return [
     'Product Name English_Lb'=> 'English Name',
     'Product Description Arabic_Lb'=> 'Arabic Description',
     'Product Description English_Lb'=> 'English Description',
+    'Product Not Found'=> 'Product Not Found',
+    'Updated Sucessfully'=> 'Updated Sucessfully',
+    'Deleted Sucessfully'=> 'Deleted Sucessfully',
+    'Product Updated Sucessfully'=> 'Product Updated Sucessfully',
+    'Product Added Sucessfully'=> 'Product Added Sucessfully',
 ];

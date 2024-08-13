@@ -122,7 +122,7 @@
         <th scope="col">{{__('messages.Offer Name')}}</th>
         <th scope="col">{{__('messages.Offer Price')}}</th>
         <th scope="col">{{__('messages.Offer details')}}</th>
-        <th scope="col">{{__('messages.photo')}}/th>
+        <th scope="col">{{__('messages.photo')}}</th>
 
         <th scope="col">{{__('messages.operation')}}</th>
     </tr>
@@ -136,7 +136,7 @@
             <td>{{$offer -> name}}</td>
             <td>{{$offer -> price}}</td>
             <td>{{$offer -> details}}</td>
-            <td><img  style="width: 90px; height: 90px;" src="{{asset('images/offers/'.$offer-> imge)}}"></td>
+            <td><img  style="width: 90px; height: 90px;" src="{{asset('images/offers/'.$offer->imge)}}"></td>
 
             <td>
                 <a href="{{url('Offers/edit/'. $offer -> id)}}" class="btn btn-success"> {{__('messages.update')}}</a>

@@ -49,13 +49,13 @@ class ProductsController extends Controller
                 'description_en'=> $request->description_en,
             ]
         );
-        return redirect()->back()->with('success','تم إضافة المنتج بنجاح');
+        return redirect()->back()->with(['success',__('messages.Product Added Sucessfully')]);
     }
 
     public function edit($id){
         $product = Product::find( $id );
         if($product == null){
-            return redirect()->back()->with('error','فشل فى إيجاد المنتج');
+            return redirect()->back()->with(['error',__('messages.Product Not Found')]);
         }
         $product = Product::where('Id' ,$id)->first();
         return view('Products.edit', compact('product'));
@@ -65,7 +65,7 @@ class ProductsController extends Controller
     public function update(Request $request, $id){
         $product = Product::find( $id );
         if($product == null){
-            return redirect()->back()->with('error','فشل فى إيجاد المنتج');
+            return redirect()->back()->with(['error',__('messages.Product Not Found')]);
         }
 
         $rule = $this->editRules();
@@ -77,16 +77,18 @@ class ProductsController extends Controller
         }
 
         $product->update( $request->all() );
-        return redirect()->back()->with('success','تم تحديث المنتج بنجاح');
+        return redirect()->back()->with(['success',__('messages.Product Updated Sucessfully')]);
 
     }
 
     public function delete($id){
 
-        $product = Product::find( $id );
+       // $product = Product::find( $id );
 
-        if($product == null){
-            return redirect()->back()->with('error','فشل فى إيجاد المنتج');
+        $product = Product::where('id',$id)->first();
+
+        if(!$product){
+            return redirect()->back()->with(['error',__('messages.Product Not Found')]);
         }
 
         $product->delete();
@@ -94,7 +96,7 @@ class ProductsController extends Controller
         // if($id != 0){
         //     Product::findOrFail($id)->delete();
         // }
-        return redirect()->back()->with('success','Deleted Sucessfully');
+        return redirect()->route('Products.all')->with(['success',__('messages.Deleted Sucessfully')]);
     }
 
     public function editRules()

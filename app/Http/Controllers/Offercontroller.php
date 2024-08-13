@@ -51,7 +51,7 @@ class Offercontroller extends Controller
             'details_ar'=> $request->details_ar,
             'details_en'=> $request->details_en,
         ]);
-        return redirect()->back()->with('success','تم إضافة العرض بنجاح');
+        return redirect()->back()->with(['success', __('messages.Offer Added Sucessfully')]);
     }
     public function edit($id){
         $offer = Offer::find($id);
@@ -66,7 +66,7 @@ class Offercontroller extends Controller
         
         $offer = Offer::find($id);
         if($offer == null){
-            return redirect()->back()->with('error','فشل فى إيجاد العرض');
+            return redirect()->back()->with(['error', __('messages.Offer Not Found')]);
         }
 
         $rule = $this->editRules();
@@ -78,7 +78,7 @@ class Offercontroller extends Controller
         }
         
         $offer->update($request->all());
-        return redirect()->back()->with('success','تم تحديدث العرض بنجاح');
+        return redirect()->back()->with(['success', __('messages.Updated Sucessfully')]);
     }
 
     public function delete($id){
@@ -86,14 +86,14 @@ class Offercontroller extends Controller
         $offer = Offer::find($id);
         
         if($offer == null){
-            return redirect()->back()->with('error','فشل فى إيجاد العرض');
+            return redirect()->back()->with(['error', __('messages.Offer Not Found')]);
         }
 
         $offer->delete();
         // if($id != 0){
         //     Offer::findOrFail($id)->delete();
         // }
-        return redirect()->back()->with('success','Deleted Sucessfully');
+        return redirect()->route('offers.all')->with(['success', __('messages.Deleted Sucessfully')]);
     }
 
     public function editRules(){

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use App\Http\Controllers\Offercontroller;
 use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\youtubeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -68,4 +69,11 @@ Route::group([
 
         Route::get('delete/{id}', [ProductsController::class, 'delete'])->name('Products.delete');
     });
+});
+
+Route::group([
+    'prefix'=> LaravelLocalization::setLocale(),
+    'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath']
+],function(){
+    Route::get('getVideo', [youtubeController::class,'index'])->name('ViewVideo');
 });
