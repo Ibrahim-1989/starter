@@ -24,7 +24,7 @@ return [
     'Offer Price must be Numbers Only'=> 'Offer Price must be Numbers Only',
     'Offer Arabic Details Is Required'=> 'Offer Arabic Details Is Required',
     'Offer English Details Is Required'=> 'Offer English Details Is Required',
-    'Offer Not Found'=> 'Offer Is Not Foundه',
+    'Offer Not Found'=> 'Offer Is Not Found',
     'Offer Added Sucessfully'=> 'Offer Is Added Sucessfully',
 /////////////////////////////////////////////Products////////////////////////////////////////////////////////////////////////////
     'Products Name'=> 'Name',
