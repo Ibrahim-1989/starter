@@ -58,7 +58,7 @@ class ProductsController extends Controller
             return redirect()->back()->with(['error',__('messages.Product Not Found')]);
         }
         $product = Product::where('Id' ,$id)->first();
-        return view('Products.edit', compact('product'));
+        return view('Products/edit', compact('product'));
     }
 
 
@@ -76,7 +76,14 @@ class ProductsController extends Controller
             return redirect()->back()->withErrors($validate)->withInput($request->all());
         }
 
-        $product->update( $request->all() );
+       // $product->update( $request->all() );
+        $product->update([
+                'name_ar'=> $request->name_ar,
+                'name_en'=> $request->name_en,
+                'price'=> $request->price,
+                'description_ar'=> $request->description_ar,
+                'description_en'=> $request->description_en,
+        ]);
         return redirect()->back()->with(['success',__('messages.Product Updated Sucessfully')]);
 
     }
