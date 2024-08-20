@@ -54,6 +54,12 @@ return [
             'url' => env('APP_URL').'/public',
             'visibility' => 'public',
         ],
+        'Ajax-Offer' => [
+            'driver' => 'local',
+            'root' => base_path().'public/images/Ajax-Offer',
+            'url' => env('APP_URL').'/public',
+            'visibility' => 'public',
+        ],
 
         's3' => [
             'driver' => 's3',

@@ -62,7 +62,7 @@ class Offercontroller extends Controller
         return view('offers.edit', compact('offer'));
     }
     
-    public function update(Request $request, $id){
+    public function update(OfferRequest $request, $id){
         
         $offer = Offer::find($id);
         if($offer == null){

@@ -1,11 +1,13 @@
 <?php
 
+use App\Http\Controllers\Auth\CustomeAuthController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use App\Http\Controllers\Offercontroller;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\youtubeController;
+use App\Http\Controllers\AJAXController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,7 +43,7 @@ Route::group([
 
         Route::get('create', [Offercontroller::class, 'Create']);
 
-        Route::Post('store', [Offercontroller::class, 'store'])->name('store');
+        Route::Post('store', [Offercontroller::class, 'store'])->name('OfferStore');
 
         Route::get('delete/{id}', [Offercontroller::class, 'delete'])->name('offers.delete');
 
@@ -61,7 +63,7 @@ Route::group([
 
         Route::get('Create', [ProductsController::class, 'Create']);
 
-        Route::Post('store', [ProductsController::class, 'store'])->name('store');
+        Route::Post('store', [ProductsController::class, 'store'])->name('ProductsStore');
 
         Route::get('edit/{id}', [ProductsController::class,'edit']);
 
@@ -77,3 +79,22 @@ Route::group([
 ],function(){
     Route::get('getVideo', [youtubeController::class,'index'])->name('ViewVideo');
 });
+
+    Route::group(['prefix'=> 'Ajax-Offer','namespace'=> 'App\Http\Controllers'], function(){
+
+        Route::get('/', [AJAXController::class, 'index'])->name('Ajax.all');
+
+        Route::get('Create', [AJAXController::class, 'Create']);
+
+        Route::Post('store', [AJAXController::class, 'store'])->name('Ajax-Offer.store');
+
+        Route::get('edit/{id}', [AJAXController::class,'edit']);
+
+        Route::Post('update/{id}', [AJAXController::class,'update'])->name('Ajax.update');
+
+        Route::get('delete/{id}', [AJAXController::class, 'delete'])->name('Ajax.delete');
+    });
+
+
+    Route::get('IndexAuth',[CustomeAuthController::class, 'Index'])->middleware('authAdmin');
+    
