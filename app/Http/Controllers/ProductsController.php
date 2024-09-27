@@ -62,7 +62,7 @@ class ProductsController extends Controller
     }
 
 
-    public function update(Request $request, $id){
+    public function update(ProductsRequest $request, $id){
         $product = Product::find( $id );
         if($product == null){
             return redirect()->back()->with(['error',__('messages.Product Not Found')]);

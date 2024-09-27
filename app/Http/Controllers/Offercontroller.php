@@ -21,6 +21,7 @@ class Offercontroller extends Controller
         'price',
         'name_'. LaravelLocalization::getCurrentLocale() . ' as name',
         'details_'. LaravelLocalization::getCurrentLocale() . ' as details',
+        'imge'
         )->get();
         return view('offers.all', compact('offers'));
     }
